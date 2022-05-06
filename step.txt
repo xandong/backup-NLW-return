@@ -1,0 +1,9 @@
+# Criando uma instancia do projeto pre moldado com vite.
+- npm create vite@latest
+
+(selecionar nome do projeto e framework)
+
+# Instalando as dependncias do projeto modelo vite
+- npm install
+
+
