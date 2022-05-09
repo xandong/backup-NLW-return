@@ -1,0 +1,88 @@
+npm init
+
+npm i typescript @types/node ts-node-dev -D
+
+npx tsc --init
+
+package.json:
+    "dev": "ts-node-dev src/server.ts"
+
+para usar somente node (server)
+  - tsconfig.json ->     "target": "es2020", 
+  - tsconfig.json ->     "rootDir": "./src", 
+  - tsconfig.json ->     "outDir": "./dist",
+
+npm i express
+npm i -D @types/express
+
+npm i cors
+npm i @types/cors -D
+- - - - - - - - - - - - - - - - - -
+(Intermediário server-database)
+npm i prisma -D
+npm i @prisma/client
+npx prisma init
+
+
+
+
+(database - dev)
+sqlite:
+em schema.prisma ->
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Feedback {
+  id String @id @default(uuid())
+
+  type String 
+  comment String 
+  screenshot String?
+
+  @@map("feedbacks")
+}
+
+      
+.env ->  DATABASE_URL="file:./dev.db"
+
+rodando o banco(dev) -> npx prisma migrate dev
+rodando o banco(produção) -> npx prisma migrate deploy
+
+npx prisma studio
+
+
+- - - - - - - - - - - - - - - - -
+(Email)
+npm i nodemailer
+npm i @types/nodemailer
+
+add no arquivo mais adequado(seguindo SOLID)
+    const transport = nodemailer.createTransport({
+      host: "smtp.mailtrap.io",
+      port: 2525,
+      auth: {
+        user: "6abfabe01bf871",
+        pass: "66a5647d321a12"
+      }
+    });
+
+
+- - - - - - - - - - - - - - - - - -
+(Testes)
+npm i jest -D
+npx jest --init
+npm i ts-node -D
+
+npm i -D jest @swc/core @swc/jest
+jest.config.ts ->
+	transform: {
+	"^.+\\.(t|j)sx?$": ["@swc/jest"],
+},
+
+npm i @types/jest -D
+
+npm run test
+- - - - - - - - - - - - - - - - - -
