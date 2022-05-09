@@ -9,7 +9,7 @@ import { PrintScreenshot } from "../../PrintScreenshot";
 interface IFeedbackContentStep {
   feedbackType: FeedbackType;
   resetType: (type: null) => void;
-  onFeedbackSent: (type: boolean) => void;
+  w: (type: boolean) => void;
 }
 
 export function FeedbackContentStep({
